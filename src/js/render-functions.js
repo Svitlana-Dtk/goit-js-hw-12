@@ -29,20 +29,43 @@ const loadMoreBtn = document.querySelector('.load-more');
 const lightbox = new SimpleLightbox('.gallery a');
 
 export function createGallery(images) {
-  const markup = images.map(
-    ({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) =>
-      `<li class="gallery-item">
+  const markup = images
+    .map(
+      ({
+        webformatURL,
+        largeImageURL,
+        tags,
+        likes,
+        views,
+        comments,
+        downloads,
+      }) => `
+      <li class="gallery-item">
         <a href="${largeImageURL}">
           <img src="${webformatURL}" alt="${tags}" />
         </a>
         <ul class="image-info">
-          <li><b>Likes:</b> ${likes}</li>
-          <li><b>Views:</b> ${views}</li>
-          <li><b>Comments:</b> ${comments}</li>
-          <li><b>Downloads:</b> ${downloads}</li>
+          <li class="info-point">
+            <p class="info-descr"> Likes </p>
+            <p class="info-value">${likes}</p>
+          </li>
+           <li class="info-point">
+            <p class="info-descr"> Views </p>
+            <p class="info-value">${views}</p>
+           </li>
+           <li class="info-point">
+            <p class="info-descr"> Comments </p>
+            <p class="info-value">${comments}</p>
+           </li>
+           <li class="info-point">
+           <p class="info-descr"> Downloads </p>
+           <p class="info-value">${downloads}</p>
+           </li>
         </ul>
-      </li>`
-  ).join('');
+      </li>
+    `
+    )
+    .join('');
 
   gallery.insertAdjacentHTML('beforeend', markup);
   lightbox.refresh();
