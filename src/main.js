@@ -27,7 +27,6 @@ async function loadImages() {
     const images = data.hits;
 
     if (page === 1 && images.length === 0) {
-      hideLoadMoreButton();
       iziToast.error({
         message: 'Sorry, there are no images matching your search query.',
         position: 'topRight',
@@ -40,7 +39,6 @@ async function loadImages() {
     totalPages = Math.ceil(data.totalHits / 15);
 
     if (page >= totalPages) {
-      hideLoadMoreButton();
       iziToast.info({
         message: "We're sorry, but you've reached the end of search results.",
         position: 'topRight',
