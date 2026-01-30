@@ -20,6 +20,7 @@ let totalPages = 0;
 
 async function loadImages() {
   try {
+    hideLoadMoreButton();
     showLoader();
 
     const data = await getImagesByQuery(currentQuery, page);
@@ -53,8 +54,13 @@ async function loadImages() {
     smoothScroll();
   
   } catch (error) {
-    console.error(error);
-  } finally {
+  console.error(error);
+  iziToast.error({
+    message: 'Something went wrong. Please try again later.',
+    position: 'topRight',
+  });
+}
+ finally {
     hideLoader();
   }
 }
